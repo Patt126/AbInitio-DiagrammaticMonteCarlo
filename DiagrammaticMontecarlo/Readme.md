@@ -9,11 +9,11 @@ The code stochastically samples Feynman diagrams to estimate the imaginary-time 
 
 The Holstein Hamiltonian for a single electron locally coupled to dispersionless optical phonons is
 
-\[
+```math
 H = -t \sum_{\langle i,j \rangle} c_i^\dagger c_j
   + \omega_0 \sum_i b_i^\dagger b_i
   + g \sum_i c_i^\dagger c_i (b_i^\dagger + b_i)
-\]
+```
 
 where:
 - t is the electron hopping amplitude
@@ -25,7 +25,7 @@ where:
 
 The code samples terms in the perturbative expansion of the single-particle Green’s function in powers of g² using a continuous-time Diagrammatic Monte Carlo scheme:
 
-- Each diagram is represented explicitly as a doubly linked list of “vertices” (phonon emission/absorption events along the electron line). Each vertex stores:
+- Each diagram is represented explicitly as a doubly linked list of “vertices” (phonon emission/absorption events along the electron line) and their topology is updated dynamically. Each vertex stores:
   - imaginary time
   - phonon momentum q
   - electron momentum before and after the scattering event
@@ -48,17 +48,6 @@ The ground-state energy E₀(k) is extracted from the large-τ decay of G(τ) ~ 
 
 ## Repository structure
 
-diagMC_Holstein/
-    DMC.cpp
-    feynmanDiagram.cpp
-    feynmanDiagram.h
-    saveSimulationToFile.cpp
-    saveSimulationToFile.h
-    main.cpp
-    analyze.py
-    Makefile
-    results/
-
 - DMC.cpp  
   Main Monte Carlo loop. Handles:
   - RNG setup
@@ -72,20 +61,9 @@ diagMC_Holstein/
 
 - feynmanDiagram.h / feynmanDiagram.cpp  
   Low-level diagram object (class Diag). Stores the current diagram as a linked list of Vertex objects. Provides:
-  - insertPhononLine / removePhononLine
-  - getAddWeight / getRemoveWeight
-  - getStretchWeight / getTauWeight
-  - stretchDiagram / setTau
-  - momentum bookkeeping along the electron line
-  - consistency checks
 
 - saveSimulationToFile.h / saveSimulationToFile.cpp  
-  Writes run output to ./results/*.csv. The file includes:
-  parameters used (N, bins, g, μ, …),
-  the final energy estimator,
-  histogram of G(τ),
-  improved estimator,
-  order distribution.
+  Writes run output to ./results/*.csv.
 
 - main.cpp  
   Defines physical parameters (t, g, μ, ω₀, etc.) and Monte Carlo parameters (N steps, number of τ bins, τ cutoff), calls DMC(), prints summary, and saves results.
@@ -106,10 +84,14 @@ Prerequisites:
 - Python 3 with numpy, matplotlib, scikit-learn (for analysis only)
 
 Compile:
+```
     make
+```
 
 Run the Monte Carlo simulation:
-    make run
+```  
+  make run
+```
 
 This will:
 - create ./results if missing
