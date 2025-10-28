@@ -20,6 +20,17 @@ where:
 - ω₀ is the phonon frequency
 - g is the electron–phonon coupling
 - μ is the chemical potential
+- 
+<p align="right">
+  <img src="./assets/holstein_diagram_example.jpg" width="650">
+</p>
+<p align="center"><em>
+Example of a sampled electron–phonon diagram in imaginary time.
+Black wavy lines represent existing phonon propagators, while red lines
+illustrate a Monte Carlo “add” update — the insertion of a new phonon line
+with momentum <b>q</b> between times τ′ and τ″. The electron line carries
+momentum labels updated according to conservation at each vertex.
+</em></p>
 
 ### Algorithm
 
