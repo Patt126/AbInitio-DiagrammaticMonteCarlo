@@ -9,9 +9,11 @@ The code stochastically samples Feynman diagrams to estimate the imaginary-time 
 
 The Holstein Hamiltonian for a single electron locally coupled to dispersionless optical phonons is
 
-H = -t ∑⟨i,j⟩ cᵢ† cⱼ
-    + ω₀ ∑ᵢ bᵢ† bᵢ
-    + g ∑ᵢ cᵢ† cᵢ (bᵢ† + bᵢ)
+\[
+H = -t \sum_{\langle i,j \rangle} c_i^\dagger c_j
+  + \omega_0 \sum_i b_i^\dagger b_i
+  + g \sum_i c_i^\dagger c_i (b_i^\dagger + b_i)
+\]
 
 where:
 - t is the electron hopping amplitude
