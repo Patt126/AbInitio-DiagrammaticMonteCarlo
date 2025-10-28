@@ -55,7 +55,7 @@ Example of a sampled electron–phonon diagram in imaginary time.
 Black wavy lines represent existing phonon propagators, while red lines
 illustrate a Monte Carlo “add” update — the insertion of a new phonon line
 with momentum <b>q</b> between times τ′ and τ″. The electron line carries
-momentum labels updated according to conservation at each vertex.
+momentum labels updated according to conservation at each vertex. From: S. Ragni, "Diagrammatic Monte Carlo for the Holstein Hamiltonian
 </em></p>
 
 ## Repository structure
