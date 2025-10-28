@@ -21,8 +21,8 @@ where:
 - g is the electron–phonon coupling
 - μ is the chemical potential
 - 
-<p align="right">
-  <img src=".diagram.jpg" width="250">
+<p align="center">
+  <img src="./diagram.jpg" width="450">
 </p>
 <p align="center"><em>
 Example of a sampled electron–phonon diagram in imaginary time.
