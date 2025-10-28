@@ -22,7 +22,7 @@ where:
 - μ is the chemical potential
 - 
 <p align="right">
-  <img src="./assets/holstein_diagram_example.jpg" width="650">
+  <img src=".diagram.jpg" width="250">
 </p>
 <p align="center"><em>
 Example of a sampled electron–phonon diagram in imaginary time.
