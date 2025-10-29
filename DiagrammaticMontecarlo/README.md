@@ -20,6 +20,8 @@ where:
 - ω₀ is the phonon frequency
 - g is the electron–phonon coupling
 - μ is the chemical potential
+- 
+
 
 ### Algorithm
 
@@ -45,6 +47,16 @@ The code samples terms in the perturbative expansion of the single-particle Gree
   - running energy estimator and blocking analysis
 
 The ground-state energy E₀(k) is extracted from the large-τ decay of G(τ) ~ Z · exp[-(E₀(k) - μ) τ]. The prefactor Z is the quasiparticle residue.
+<p align="center">
+  <img src="./diagram.jpg" width="450">
+</p>
+<p align="center"><em>
+Example of a sampled electron–phonon diagram in imaginary time.
+Black wavy lines represent existing phonon propagators, while red lines
+illustrate a Monte Carlo “add” update — the insertion of a new phonon line
+with momentum <b>q</b> between times τ′ and τ″. The electron line carries
+momentum labels updated according to conservation at each vertex. From: S. Ragni, "Diagrammatic Monte Carlo for the Holstein Hamiltonian
+</em></p>
 
 ## Repository structure
 
