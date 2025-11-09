@@ -13,10 +13,10 @@ The goal is to bring realistic material couplings into **finite-temperature many
 
 In the Matsubara formalism, the interacting Green’s function is written as a diagrammatic expansion over all connected Feynman topologies \(D\):
 
-\[
+$
 G(k, \tau) = \sum_{D} \int \mathcal{D}[\tau_i, q_i] \;
 \mathcal{W}_D(k,\{\tau_i, q_i\}) ,
-\]
+$
 
 where each diagram contributes a weight \(\mathcal{W}_D\) built from electron and phonon propagators and electron–phonon vertices.  
 DiagMC stochastically samples diagram space by proposing topology updates, evaluating weights, and accumulating Green’s function estimators at finite temperature.
