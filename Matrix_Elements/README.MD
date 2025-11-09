@@ -14,7 +14,7 @@ Physics validation and inspection of the raw electron–phonon tensor:
 ### `order_reduction.ipynb`
 
 Data-driven compression of electron–phonon matrix elements based on:  
-**L. Bernardi et al., Phys. Rev. Lett. 125, 256402 (2020)**
+**Y. Luo, D. C. Desai, B. K. Chang, C.-H. Park, and M. Bernardi, Data-Driven Compression of Electron-Phonon Interactions, Phys. Rev. X 14, 021023 (2024))**
 
 Includes:
 - SVD compression of e–ph coupling matrices
