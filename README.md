@@ -18,7 +18,7 @@ G(k, \tau) = \sum_{D} \int \mathcal{D}[\tau_i, q_i] \;
 \mathcal{W}_D(k,\{\tau_i, q_i\}) ,
 ```
 
-where each diagram contributes a weight \(\mathcal{W}_D\) built from electron and phonon propagators and electron–phonon vertices.  
+where each diagram contributes a weight \({W}_D\) built from electron and phonon propagators and electron–phonon vertices.  
 DiagMC stochastically samples diagram space by proposing topology updates, evaluating weights, and accumulating Green’s function estimators at finite temperature.
 
 This formulation captures **emergent quasiparticles (e.g. polarons)** without mean-field or low-order truncations, but demands extremely fast access to electron–phonon coupling data inside the Monte-Carlo kernel.
