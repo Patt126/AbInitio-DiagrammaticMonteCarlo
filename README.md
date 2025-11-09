@@ -1,7 +1,7 @@
 # Diagrammatic Monte Carlo for Ab-Initio Electron–Phonon Physics
 
 Framework connecting **Diagrammatic Monte Carlo (DiagMC)** to **first-principles electron–phonon matrix elements**.  
-Developed in collaboration with **Cesare Franchini’s group (University of Vienna)** with workflows aligned to **VASP DFPT (vaspelph.h5)**.
+Developed in collaboration with **Cesare Franchini’s group (University of Vienna)** with workflows aligned to **VASP DFPT (DFT code)**.
 
 The goal is to bring realistic material couplings into **finite-temperature many-body Feynman diagram sampling**, under the constraint of **10⁶–10⁸ diagram evaluations per run**, requiring structured tensor compression and low-latency reconstruction.
 
