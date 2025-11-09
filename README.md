@@ -42,7 +42,7 @@ Tools for **validating, compressing, and reconstructing** DFPT electron–phonon
 Compression is necessary because:
 - tensors scale with:
 ```math
-   **\(N_k \times N_q \times N_b^2\)**
+   O(N_k \times N_q \times N_b^2)
 ```
 - the DiagMC kernel performs **millions of weight evaluations per second**
 - reconstruction must preserve **physical observables**, not just matrix norms
