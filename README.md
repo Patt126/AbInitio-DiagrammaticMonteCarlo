@@ -1,66 +1,77 @@
-# Diagrammatic Monte Carlo for Real Material Electron–Phonon Interactions
+# Diagrammatic Monte Carlo for Ab-Initio Electron–Phonon Physics
 
-High-performance **Diagrammatic Monte Carlo (DiagMC)** framework for electron–phonon systems, developed in collaboration with **Cesare Franchini’s group (University of Vienna)** and aligned with ongoing developments around **VASP DFPT electron–phonon workflows**.
+Framework connecting **Diagrammatic Monte Carlo (DiagMC)** to **first-principles electron–phonon matrix elements**.  
+Developed in collaboration with **Cesare Franchini’s group (University of Vienna)** with workflows aligned to **VASP DFPT (vaspelph.h5)**.
 
----
-
-## Project Motivation
-
-DiagMC stems from **quantum many-body field theory**, where electron–phonon interactions generate **emergent quasiparticles** such as *polarons*.  
-Using the **Matsubara formalism**, the method stochastically evaluates the **finite-temperature Green’s functions and partition function** by sampling Feynman diagram topologies.
-
-Key strengths:
-- Non-perturbative treatment of interactions
-- Direct evaluation of Matsubara Green’s functions
-- No mean-field assumptions, systematic convergence
-
-To model **real materials**, the solver must embed **first-principles electron–phonon coupling tensors** (DFT/DFPT from VASP).  
-These tensors are large, high-dimensional, and must be queried **inside sampling loops executing thousands of diagram updates per second**.  
-This makes **compression with controlled physical error** a core requirement.
+The goal is to bring realistic material couplings into **finite-temperature many-body Feynman diagram sampling**, under the constraint of **10⁶–10⁸ diagram evaluations per run**, requiring structured tensor compression and low-latency reconstruction.
 
 ---
 
-## Code Architecture
+## Diagrammatic Monte Carlo
 
-| Component | Function |
+### Physical backbone
+
+In the Matsubara formalism, the interacting Green’s function is written as a diagrammatic expansion over all connected Feynman topologies \(D\):
+
+\[
+G(k, \tau) = \sum_{D} \int \mathcal{D}[\tau_i, q_i] \;
+\mathcal{W}_D(k,\{\tau_i, q_i\}) ,
+\]
+
+where each diagram contributes a weight \(\mathcal{W}_D\) built from electron and phonon propagators and electron–phonon vertices.  
+DiagMC stochastically samples diagram space by proposing topology updates, evaluating weights, and accumulating Green’s function estimators at finite temperature.
+
+This formulation captures **emergent quasiparticles (e.g. polarons)** without mean-field or low-order truncations, but demands extremely fast access to electron–phonon coupling data inside the Monte-Carlo kernel.
+
+### Contents
+
+| File | Description |
 |---|---|
-| `diagmc/` | C++ solver for diagram sampling, topology updates, and Green’s function estimation |
-| `python/` | Analysis utilities and numerical post-processing |
+| `DMC.cpp` | Monte-Carlo sampling loop, diagram updates, estimators |
+| `feynmanDiagram.{cpp,h}` | Linked-list diagram representation and topology operations |
+| `saveSimulationToFile.{cpp,h}` | Observables, distributions, configuration dumps |
+| `analyze.py` | Post-processing of \(G(\tau)\), energies, diagram statistics |
+| `notebooks/` | Optional analysis and visualization |
 
 ---
 
 ## Matrix Elements
 
-Infrastructure for inspecting, compressing, and reconstructing **DFPT electron–phonon matrix elements** before ingestion in DiagMC sampling:
+Tools for **validating, compressing, and reconstructing** DFPT electron–phonon tensors from VASP before integration into DiagMC.
 
-| File / Folder | Purpose |
+Compression is necessary because:
+- tensors scale with **\(N_k \times N_q \times N_b^2\)**
+- the DiagMC kernel performs **millions of weight evaluations per second**
+- reconstruction must preserve **physical observables**, not just matrix norms
+
+### Contents
+
+| File / Folder | Description |
 |---|---|
-| `matrix_element.ipynb` | Structural validation of `vaspelph.h5`, band structure/phonon plots, matrix-element amplitude maps, Bose–Einstein populations, Dulong-Petit limit check, band-gap renormalization diagnostics |
-| `order_reduction.ipynb` | Data-driven compression following **Bernardi et al. PRL 125, 256402 (2020)**: SVD, symmetry extension, Wannier-basis reduction (Wannier90), k-space reconstruction, error analysis via physical observables |
-| `DATA/` | Minimal coarse-mesh tensors provided for local execution and testing |
-| `RESULTS/` | Benchmarks on production-scale k-meshes, compression trends, reconstruction error, physical observable drift |
+| `matrix_element.ipynb` | Reads `vaspelph.h5`, inspects tensor structure, plots electronic bands, phonons, vertex magnitude, Bose–Einstein occupation, Dulong–Petit limit, band-gap renormalization diagnostics |
+| `order_reduction.ipynb` | Implements **SVD and Wannier-space compression** following *Bernardi et al., PRL 125, 256402 (2020)*. Includes symmetry extension, singular-value trend analysis, Wannier90 rotation, k-space reconstruction, and comparison via physical observables |
+| `DATA/` | Small coarse-mesh tensors for local execution and testing |
+| `RESULTS/` | High-resolution compression benchmarks, reconstruction error, band-gap renormalization drift |
 
-**Note:** Effective compression requires **fine k-mesh tensors**.  
-Coarse data in `DATA/` is for execution tests only; full compression analysis refers to high-resolution results in `RESULTS/`.
-
----
-
-## Physics Scope
-
-- Emergent quasiparticles (polaronic dressing)
-- Electron–phonon self-energy at finite temperature
-- Band-gap renormalization from interacting propagators
-- Scalable integration of ab-initio couplings into Monte-Carlo estimators
+**Note:** coarse data in `DATA/` is for execution tests only. Effective compression must be assessed on dense k-meshes as shown in `RESULTS/`.
 
 ---
 
-## Constraints Driving Design
+## Design constraints
 
-- Sampling loops evaluate **10⁶–10⁸ diagrams per run**
-- e–ph tensors must be **compressed, differentiable, and reconstructible**
-- Memory and lookup overhead must not compete with diagram sampling time
-- Error must be controlled in **physical observables**, not just matrix norms
+- **Diagram sampling speed is the bottleneck**, not DFT preprocessing
+- Vertex lookup must not slow Monte-Carlo acceptance rates
+- Compression must allow **on-the-fly reconstruction inside the sampler**
+- Error is measured through **physical observables** (self-energy, gap renormalization), not Frobenius norms
 
 ---
 
-This codebase links **DFT-level material specificity** with **many-body stochastic solvers**, under the performance constraints imposed by real DiagMC workloads.
+## Scientific scope
+
+- Finite-temperature electron–phonon self-energy
+- Polaron formation as an emergent diagrammatic object
+- First-principles Hamiltonians embedded in stochastic field-theory solvers
+- Tensor compression under physical-equivalence constraints
+
+---
+
