@@ -52,7 +52,7 @@ Compression is necessary because:
 | File / Folder | Description |
 |---|---|
 | `matrix_element.ipynb` | Reads `vaspelph.h5`, inspects tensor structure, plots electronic bands, phonons, vertex magnitude, Bose–Einstein occupation, Dulong–Petit limit, band-gap renormalization diagnostics |
-| `order_reduction.ipynb` | Implements **SVD and Wannier-space compression** following *Bernardi et al., PRL 125, 256402 (2020)*. Includes symmetry extension, singular-value trend analysis, Wannier90 rotation, k-space reconstruction, and comparison via physical observables |
+| `order_reduction.ipynb` | Implements **SVD and Wannier-space compression** following *BY. Luo, D. C. Desai, B. K. Chang, C.-H. Park, and M. Bernardi, Data-Driven Compression of Electron-Phonon Interactions, Phys. Rev. X 14, 021023 (2024))*. Includes symmetry extension, singular-value trend analysis, Wannier90 rotation, k-space reconstruction, and comparison via physical observables |
 | `DATA/` | Small coarse-mesh tensors for local execution and testing |
 | `RESULTS/` | High-resolution compression benchmarks, reconstruction error, band-gap renormalization drift |
 
