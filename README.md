@@ -31,7 +31,7 @@ This formulation captures **emergent quasiparticles (e.g. polarons)** without me
 | `feynmanDiagram.{cpp,h}` | Linked-list diagram representation and topology operations |
 | `saveSimulationToFile.{cpp,h}` | Observables, distributions, configuration dumps |
 | `analyze.py` | Post-processing of \(G(\tau)\), energies, diagram statistics |
-| `notebooks/` | Optional analysis and visualization |
+
 
 ---
 
@@ -40,7 +40,10 @@ This formulation captures **emergent quasiparticles (e.g. polarons)** without me
 Tools for **validating, compressing, and reconstructing** DFPT electron–phonon tensors from VASP before integration into DiagMC.
 
 Compression is necessary because:
-- tensors scale with **\(N_k \times N_q \times N_b^2\)**
+- tensors scale with:
+```math
+   **\(N_k \times N_q \times N_b^2\)**
+```
 - the DiagMC kernel performs **millions of weight evaluations per second**
 - reconstruction must preserve **physical observables**, not just matrix norms
 
