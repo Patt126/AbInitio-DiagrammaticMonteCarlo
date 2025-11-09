@@ -11,10 +11,7 @@ The goal is to bring realistic material couplings into **finite-temperature many
 
 ### Physical backbone
 
-In the Matsubara formalism, the interacting Green’s function is written as a diagrammatic expansion over all connected Feynman topologies 
-```math
- D 
-```
+In the Matsubara formalism, the interacting Green’s function is written as a diagrammatic expansion over all connected Feynman topologies \(D\):
 
 ```math
 G(k, \tau) = \sum_{D} \int \mathcal{D}[\tau_i, q_i] \;
