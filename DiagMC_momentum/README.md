@@ -1,6 +1,7 @@
-# Diagrammatic Monte Carlo Runs
+# Diagrammatic Monte Carlo momentum/band dependent
+This directory present updated montecarlo procedure and data sturcture, according to the extended version presented in chapter 3 of thesis manuscript.
 
-This project now has two standalone simulation entry points:
+This project has two standalone simulation entry points:
 
 - `Breathing_Coupling/breathing.cpp`
 - `sign_oscillation/sign_oscillation.cpp`
