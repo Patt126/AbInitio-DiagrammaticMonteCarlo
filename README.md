@@ -1,9 +1,9 @@
 # Diagrammatic Monte Carlo for Ab-Initio Electron–Phonon Physics
 
 Framework connecting **Diagrammatic Monte Carlo (DiagMC)** to **first-principles electron–phonon matrix elements**.  
-Developed in collaboration with **Cesare Franchini’s group (University of Vienna)** with workflows aligned to **VASP DFPT (DFT code)**.
+Developed in collaboration with **Cesare Franchini’s group (University of Vienna)**.
 
-The goal is to bring realistic material couplings into **finite-temperature many-body Feynman diagram sampling**, under the constraint of **10⁶–10⁸ diagram evaluations per run**, requiring structured tensor compression and low-latency reconstruction.
+The goal is to bring realistic material couplings into **finite-temperature many-body Feynman diagram sampling**, under the constraint of **10⁶–10⁸ diagram evaluations per run**, requiring structured tensor compression and low-latency reconstruction. 
 
 ---
 
@@ -25,6 +25,15 @@ This formulation captures **emergent quasiparticles (e.g. polarons)** without me
 
 ### Contents
 
+## DiagMC_Holstein
+Basic diagrammatic montecarlo sampling for the Holstein-Model: an important prototype Hamiltonian were the coupling is just a costat (g), in good agreement with literature implementations.
+
+## DiagMC_momentum
+-Extension of Holstein Code to include electron dispersion, phonon frequency and coupling which explicitly depends on particles momentum and mode/band indices. This implies an improvment of the procedure needed to compute diagram weight efficiently: now an update propagate across the whole data structure, modifiyng the structure of vertices and propagators. 
+- Benchmark over the Breathing-Mode model showing good agreement with the theoretical perturbation calculation (ref: Momentum average approximation for models with electron-phonon coupling dependent on the phonon momentum| G.L.Goodvin & M.Berciu)
+- Benchmark of the sign-problem: instability caused by phase oscillating coupling.
+
+Common structure:
 | File | Description |
 |---|---|
 | `DMC.cpp` | Monte-Carlo sampling loop, diagram updates, estimators |
@@ -34,10 +43,9 @@ This formulation captures **emergent quasiparticles (e.g. polarons)** without me
 
 
 ---
+## Matrix_Elements_QE
 
-## Matrix Elements
-
-Tools for **validating, compressing, and reconstructing** DFPT electron–phonon tensors from VASP before integration into DiagMC.
+Tools for **validating, compressing, and reconstructing** DFT electron–phonon tensors from QE +EPW, effieciently on fine grid momentum and band indices before and during integration into DiagMC.
 
 Compression is necessary because:
 - tensors scale with:
@@ -46,6 +54,12 @@ Compression is necessary because:
 ```
 - the DiagMC kernel performs **millions of weight evaluations per second**
 - reconstruction must preserve **physical observables**, not just matrix norms
+- The code implement SVD or Tucker decomposition that remove the main bottleneck in performing the  Wannier-Fourier interpolation. This is achieved because this low-rank factorization techniques allow to factorize the densor over different dimension and process them indipendently.
+---
+
+## Matrix Elements (VASP)
+
+Initial Implementation in VASP, showing some limitation on the possibilities to achieve an efficient procedure. Likely new feature will be soon available on the code to reproduce the result achieved with QE+EPW.
 
 ### Contents
 
@@ -72,9 +86,9 @@ Compression is necessary because:
 ## Scientific scope
 
 - Finite-temperature electron–phonon self-energy
-- Polaron formation as an emergent diagrammatic object
+- Polaron formation study
 - First-principles Hamiltonians embedded in stochastic field-theory solvers
-- Tensor compression under physical-equivalence constraints
+- El-ph Tensor compression and inteprolation
 
 ---
 
