@@ -1,0 +1,34 @@
+Running on node: n4902-015
+CPUs allocated: 24
+Reading Text Data: ../epwdata.fmt
+Dims: Bands=4, Modes=6, R_k=1163, R_g=1163, R_q=1163
+!All the file has been red!
+Replicating wigner.f90 scan loops...
+
+Total vectors found: 1163 (Should be 1163)
+Reading ../silicon.epb1...
+  - Total Record Bytes: 1536632220
+  - nqc (q-points in file): 1000
+  - Reading epmatq (96000000 complex elements)...
+  ! Warning: 216 bytes remaining in record (padding?).
+Reading ../silicon.epmatwp...
+G shape loaded: (1163, 1163, 6, 4, 4)
+Number of SVs: 1163
+Number of SVs: 1000
+LR factorization: 31.632879972457886 seconds 
+Relative error with 4% SV = 0.308%
+LR factorization: 20.236045837402344 seconds 
+Relative error with 4% SV = 83.1%
+Number of SV 34 corresponding to 3.0%
+LowRank Wannierization: 0.09712386131286621 seconds 
+FullRank Wannierization: 0.9613895416259766 seconds 
+2.384185791015625e-06 s |  0
+781.6375200748444 s |  100
+1563.7880244255066 s |  200
+2346.370893716812 s |  300
+3129.5792093276978 s |  400
+3913.3783180713654 s |  500
+4697.281289100647 s |  600
+5481.6451761722565 s |  700
+6266.217548131943 s |  800
+7054.115791797638 s |  900
