@@ -1,6 +1,6 @@
 ## Electron–Phonon Matrix Elements Post-Processing
 
-Post-processing tools for analyzing and compressing DFPT electron–phonon matrix elements from **VASP 6.5.1** (`vaspelph.h5`).
+Post-processing tools for analyzing and compressing electron–phonon matrix elements from **VASP 6.5.1** (`vaspelph.h5`).
 
 ### `matrix_element.ipynb`
 
