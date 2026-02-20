@@ -72,7 +72,7 @@ momentum labels updated according to conservation at each vertex. From: S. Ragni
   pair<double,double> DMC(...)
 
 - feynmanDiagram.h / feynmanDiagram.cpp  
-  Low-level diagram object (class Diag). Stores the current diagram as a linked list of Vertex objects. Provides:
+  Low-level diagram object (class Diag). Stores the current diagram as a linked list of Vertex objects. Provides: diagram updates methods, update weight evaluation
 
 - saveSimulationToFile.h / saveSimulationToFile.cpp  
   Writes run output to ./results/*.csv.
